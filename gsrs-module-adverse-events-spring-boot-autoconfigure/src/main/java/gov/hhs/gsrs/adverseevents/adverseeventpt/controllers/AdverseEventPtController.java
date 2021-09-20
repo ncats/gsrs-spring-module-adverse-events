@@ -114,6 +114,7 @@ public class AdverseEventPtController extends EtagLegacySearchEntityController<A
                                                HttpServletRequest request
 
     ) throws Exception {
+        /*
         Optional<ETag> etagObj = this.eTagRepository.findByEtag(etagId);
         boolean publicOnly = publicOnlyObj == null ? true : publicOnlyObj;
         if (!etagObj.isPresent()) {
@@ -139,6 +140,38 @@ public class AdverseEventPtController extends EtagLegacySearchEntityController<A
             });
             return new ResponseEntity(p.getMetaData(), HttpStatus.OK);
         }
+
+         */
+        Optional<ETag> etagObj = eTagRepository.findByEtag(etagId);
+
+        boolean publicOnly = publicOnlyObj==null? true: publicOnlyObj;
+
+        if (!etagObj.isPresent()) {
+            return new ResponseEntity<>("could not find etag with Id " + etagId,gsrsControllerConfiguration.getHttpStatusFor(HttpStatus.BAD_REQUEST, parameters));
+        }
+
+        ExportMetaData emd=new ExportMetaData(etagId, etagObj.get().uri, prof.getName(), publicOnly, format);
+
+        //Not ideal, but gets around user problem
+        Stream<AdverseEventPt> mstream = new EtagExportGenerator<AdverseEventPt>(entityManager, transactionManager, HttpRequestHolder.fromRequest(request)).generateExportFrom(getEntityService().getContext(), etagObj.get()).get();
+
+        //GSRS-699 REALLY filter out anything that isn't public unless we are looking at private data
+//        if(publicOnly){
+//            mstream = mstream.filter(s-> s.getAccess().isEmpty());
+//        }
+
+        Stream<AdverseEventPt> effectivelyFinalStream = filterStream(mstream, publicOnly, parameters);
+
+        if(fileName!=null){
+            emd.setDisplayFilename(fileName);
+        }
+
+        ExportProcess<AdverseEventPt> p = exportService.createExport(emd,
+                () -> effectivelyFinalStream);
+
+        p.run(taskExecutor, out -> Unchecked.uncheck(() -> getExporterFor(format, out, publicOnly, parameters)));
+
+        return new ResponseEntity<>(GsrsControllerUtil.enhanceWithView(p.getMetaData(), parameters), HttpStatus.OK);
     }
 
     private Exporter<AdverseEventPt> getExporterFor(String extension, OutputStream pos, boolean publicOnly, Map<String, String> parameters) throws IOException {
