@@ -47,6 +47,9 @@ public class AdverseEventDme extends AbstractGsrsEntity implements SubstanceAdve
     @Column(name="SUBSTANCE_ID")
     public String substanceId;
 
+    @Column(name="UNII")
+    public String unii;
+
     @Indexable(facet = true, name = "Substance Key")
     @Column(name="SUBSTANCE_KEY")
     public String substanceKey;
@@ -64,13 +67,13 @@ public class AdverseEventDme extends AbstractGsrsEntity implements SubstanceAdve
     public String ptTermMeddra;
 
     @Column(name="CASE_COUNT")
-    public int caseCount;
+    public Integer caseCount;
 
     @Column(name="DME_COUNT")
-    public int dmeCount;
+    public Integer dmeCount;
 
     @Column(name="DME_COUNT_PERCENT")
-    public double dmeCountPercent;
+    public Double dmeCountPercent;
 
     @Column(name="WEIGHTED_AVG_PRR", columnDefinition="Decimal(10,3) default 0.0")
     public Double weightedAvgPrr = 0.0;

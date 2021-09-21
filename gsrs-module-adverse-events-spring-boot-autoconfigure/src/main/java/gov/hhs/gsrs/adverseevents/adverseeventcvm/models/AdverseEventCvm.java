@@ -46,6 +46,9 @@ public class AdverseEventCvm extends AbstractGsrsEntity implements SubstanceAdve
     @Column(name="SUBSTANCE_ID")
     public String substanceId;
 
+    @Column(name="UNII")
+    public String unii;
+
     @Indexable(facet = true, name = "Substance Key")
     @Column(name="SUBSTANCE_KEY")
     public String substanceKey;
@@ -67,7 +70,7 @@ public class AdverseEventCvm extends AbstractGsrsEntity implements SubstanceAdve
     public String adverseEvent;
 
     @Column(name="AE_COUNT")
-    public int aeCount;
+    public Integer aeCount;
 
     @JsonIgnore
     @Indexable(facet=true, name="Deprecated")

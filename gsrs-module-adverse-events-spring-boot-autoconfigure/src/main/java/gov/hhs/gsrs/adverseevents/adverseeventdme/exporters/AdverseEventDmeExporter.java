@@ -9,9 +9,14 @@ import java.util.*;
 
 enum DmeDefaultColumns implements Column {
     SUBSTANCE_NAME,
+    APPROVAL_ID,
     SUBSTANCE_KEY,
+    DME_REACTIONS,
     PTTERM_MEDDRA,
-    DME_REACTIONS
+    CASE_COUNT,
+    DME_COUNT,
+    DME_COUNT_PERCENT,
+    WEIGHTED_AVERAGE_PRR
 }
 
 public class AdverseEventDmeExporter implements Exporter<AdverseEventDme> {
@@ -56,10 +61,25 @@ public class AdverseEventDmeExporter implements Exporter<AdverseEventDme> {
         DEFAULT_RECIPE_MAP = new LinkedHashMap<>();
 
         DEFAULT_RECIPE_MAP.put(DmeDefaultColumns.SUBSTANCE_NAME, SingleColumnValueRecipe.create( DmeDefaultColumns.SUBSTANCE_NAME ,(s, cell) -> cell.writeString(s.name)));
-        DEFAULT_RECIPE_MAP.put(DmeDefaultColumns.SUBSTANCE_KEY, SingleColumnValueRecipe.create( DmeDefaultColumns.SUBSTANCE_KEY ,(s, cell) -> cell.writeString(s.substanceKey)));
-        DEFAULT_RECIPE_MAP.put(DmeDefaultColumns.PTTERM_MEDDRA, SingleColumnValueRecipe.create( DmeDefaultColumns.PTTERM_MEDDRA ,(s, cell) -> cell.writeString(s.ptTermMeddra)));
+        DEFAULT_RECIPE_MAP.put(DmeDefaultColumns.APPROVAL_ID, SingleColumnValueRecipe.create( DmeDefaultColumns.APPROVAL_ID ,(s, cell) -> cell.writeString(s.unii)));
         DEFAULT_RECIPE_MAP.put(DmeDefaultColumns.DME_REACTIONS, SingleColumnValueRecipe.create( DmeDefaultColumns.DME_REACTIONS ,(s, cell) -> cell.writeString(s.dmeReactions)));
-
+        DEFAULT_RECIPE_MAP.put(DmeDefaultColumns.PTTERM_MEDDRA, SingleColumnValueRecipe.create( DmeDefaultColumns.PTTERM_MEDDRA ,(s, cell) -> cell.writeString(s.ptTermMeddra)));
+        DEFAULT_RECIPE_MAP.put(DmeDefaultColumns.CASE_COUNT, SingleColumnValueRecipe.create( DmeDefaultColumns.CASE_COUNT ,(s, cell) -> {
+            String count = (s.caseCount != null) ? Integer.toString(s.caseCount) : null;
+            cell.writeString(count);
+        }));
+        DEFAULT_RECIPE_MAP.put(DmeDefaultColumns.DME_COUNT, SingleColumnValueRecipe.create( DmeDefaultColumns.DME_COUNT ,(s, cell) -> {
+            String count = (s.dmeCount != null) ? Integer.toString(s.dmeCount) : null;
+            cell.writeString(count);
+        }));
+        DEFAULT_RECIPE_MAP.put(DmeDefaultColumns.DME_COUNT_PERCENT, SingleColumnValueRecipe.create( DmeDefaultColumns.DME_COUNT_PERCENT ,(s, cell) -> {
+            String count = (s.dmeCountPercent != null) ? Double.toString(s.dmeCountPercent) : null;
+            cell.write(count);
+        }));
+        DEFAULT_RECIPE_MAP.put(DmeDefaultColumns.WEIGHTED_AVERAGE_PRR, SingleColumnValueRecipe.create( DmeDefaultColumns.WEIGHTED_AVERAGE_PRR ,(s, cell) -> {
+            String count = (s.weightedAvgPrr != null) ? Double.toString(s.weightedAvgPrr) : null;
+            cell.write(count);
+        }));
     }
 
     /**

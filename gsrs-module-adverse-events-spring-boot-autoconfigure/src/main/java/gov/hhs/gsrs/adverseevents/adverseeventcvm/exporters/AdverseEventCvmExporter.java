@@ -9,8 +9,12 @@ import java.util.*;
 
 enum CvmefaultColumns implements Column {
     SUBSTANCE_NAME,
+    APPROVAL_ID,
     SUBSTANCE_KEY,
-    SPECIES
+    ADVERSE_EVENT,
+    SPECIES,
+    ADVERSE_EVENT_COUNT,
+    ROUTE_OF_ADMINISTRATION
 }
 
 public class AdverseEventCvmExporter implements Exporter<AdverseEventCvm> {
@@ -55,9 +59,18 @@ public class AdverseEventCvmExporter implements Exporter<AdverseEventCvm> {
         DEFAULT_RECIPE_MAP = new LinkedHashMap<>();
 
         DEFAULT_RECIPE_MAP.put(CvmefaultColumns.SUBSTANCE_NAME, SingleColumnValueRecipe.create( CvmefaultColumns.SUBSTANCE_NAME ,(s, cell) -> cell.writeString(s.name)));
+        DEFAULT_RECIPE_MAP.put(CvmefaultColumns.APPROVAL_ID, SingleColumnValueRecipe.create( CvmefaultColumns.APPROVAL_ID ,(s, cell) -> cell.writeString(s.unii)));
         DEFAULT_RECIPE_MAP.put(CvmefaultColumns.SUBSTANCE_KEY, SingleColumnValueRecipe.create( CvmefaultColumns.SUBSTANCE_KEY ,(s, cell) -> cell.writeString(s.substanceKey)));
+        DEFAULT_RECIPE_MAP.put(CvmefaultColumns.ADVERSE_EVENT, SingleColumnValueRecipe.create( CvmefaultColumns.ADVERSE_EVENT ,(s, cell) -> cell.writeString(s.adverseEvent)));
         DEFAULT_RECIPE_MAP.put(CvmefaultColumns.SPECIES, SingleColumnValueRecipe.create( CvmefaultColumns.SPECIES ,(s, cell) -> cell.writeString(s.species)));
-
+        DEFAULT_RECIPE_MAP.put(CvmefaultColumns.ADVERSE_EVENT_COUNT, SingleColumnValueRecipe.create( CvmefaultColumns.ADVERSE_EVENT_COUNT ,(s, cell) -> {
+            String count = null;
+            if (s.aeCount != null) {
+                count = Integer.toString(s.aeCount);
+            }
+            cell.write(count);
+        }));
+        DEFAULT_RECIPE_MAP.put(CvmefaultColumns.ROUTE_OF_ADMINISTRATION, SingleColumnValueRecipe.create( CvmefaultColumns.ROUTE_OF_ADMINISTRATION ,(s, cell) -> cell.writeString(s.routeOfAdmin)));
     }
 
     /**
