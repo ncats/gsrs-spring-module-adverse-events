@@ -1,6 +1,6 @@
 package gov.hhs.gsrs.adverseevents.adverseeventpt.services;
 
-import gov.hhs.gsrs.adverseevents.adverseeventpt.models.AdverseEventPt;
+import gov.hhs.gsrs.adverseevents.adverseeventpt.models.*;
 import gov.hhs.gsrs.adverseevents.adverseeventpt.repository.AdverseEventPtRepository;
 
 import gsrs.controller.IdHelpers;
@@ -168,4 +168,8 @@ public class AdverseEventPtEntityService extends AbstractGsrsEntityService<Adver
         return Optional.empty();
     }
 
+    public AdverseEventFAERSDashboard findFaersDashboardRecordByName(String name) {
+        AdverseEventFAERSDashboard adv = repository.findFaersDashboardRecordByName(name);
+        return adv;
+    }
 }

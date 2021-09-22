@@ -2,7 +2,7 @@ package gov.hhs.gsrs.adverseevents.adverseeventpt.controllers;
 
 import gov.hhs.gsrs.adverseevents.adverseeventpt.services.AdverseEventPtEntityService;
 import gov.hhs.gsrs.adverseevents.adverseeventpt.searcher.LegacyAdverseEventPtSearcher;
-import gov.hhs.gsrs.adverseevents.adverseeventpt.models.AdverseEventPt;
+import gov.hhs.gsrs.adverseevents.adverseeventpt.models.*;
 import gov.hhs.gsrs.adverseevents.AdverseEventDataSourceConfig;
 
 import gsrs.controller.*;
@@ -182,6 +182,15 @@ public class AdverseEventPtController extends EtagLegacySearchEntityController<A
         } else {
             return factory.createNewExporter(pos, params);
         }
+    }
+
+    @GetGsrsRestApiMapping("/faersdashboard/{name}")
+    public ResponseEntity<String> findFaersDashboardRecordByName(@PathVariable("name") String name) throws Exception {
+        AdverseEventFAERSDashboard adv = adverseEventEntityService.findFaersDashboardRecordByName(name);
+        if (name == null) {
+            throw new IllegalArgumentException("There is no name provided");
+        }
+        return new ResponseEntity(adv, HttpStatus.OK);
     }
 
     public Optional<AdverseEventPt> injectSubstanceDetails(Optional<AdverseEventPt> application) {
