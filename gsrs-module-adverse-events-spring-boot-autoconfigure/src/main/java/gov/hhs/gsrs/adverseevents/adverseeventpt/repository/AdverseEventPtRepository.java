@@ -16,6 +16,6 @@ public interface AdverseEventPtRepository extends GsrsRepository<AdverseEventPt,
 
     Optional<AdverseEventPt> findById(Long id);
 
-    @Query("SELECT a FROM AdverseEventFAERSDashboard a where a.nameTruncateGP = ?1")
+    @Query("SELECT a FROM AdverseEventFAERSDashboard a where lower(a.nameTruncateGP) = lower(?1)")
     AdverseEventFAERSDashboard findFaersDashboardRecordByName(String name);
 }
