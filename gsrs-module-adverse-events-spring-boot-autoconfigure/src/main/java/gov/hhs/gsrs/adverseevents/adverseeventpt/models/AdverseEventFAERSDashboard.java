@@ -35,7 +35,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
 
-@EntityListeners({AuditingEntityListener.class, GsrsEntityProcessorListener.class, IndexerEntityListener.class, BackupEntityProcessorListener.class})
 @IndexableRoot
 @Backup
 @Data
