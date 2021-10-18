@@ -52,19 +52,19 @@ public class AdverseEventCvm extends AbstractGsrsEntity implements SubstanceAdve
     @Column(name="SUBSTANCE_KEY")
     public String substanceKey;
 
-    @Indexable(facet = true, name = "Ingredient Name")
+    @Indexable(suggest = true, facet = true, name = "Ingredient Name")
     @Column(name="NAME")
     public String name;
 
-    @Indexable(facet = true, name = "Route of Administration")
+    @Indexable(suggest = true, facet = true, name = "Route of Administration")
     @Column(name="ROUTE_OF_ADMINISTRATION")
     public String routeOfAdmin;
 
-    @Indexable(facet = true, name = "Species")
+    @Indexable(suggest = true, facet = true, name = "Species")
     @Column(name="SPECIES")
     public String species;
 
-    @Indexable(facet = true, name = "Adverse Event")
+    @Indexable(suggest = true, facet = true, name = "Adverse Event")
     @Column(name="ADVERSE_EVENT")
     public String adverseEvent;
 

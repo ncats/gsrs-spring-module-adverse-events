@@ -58,15 +58,15 @@ public class AdverseEventPt extends AbstractGsrsEntity implements SubstanceAdver
     @Column(name = "SUBSTANCE_KEY")
     public String substanceKey;
 
-    @Indexable(facet = true, name = "Ingredient Name")
+    @Indexable(suggest = true, facet = true, name = "Ingredient Name")
     @Column(name = "NAME")
     public String name;
 
-    @Indexable(facet = true, name = "Adverse Event")
+    @Indexable(suggest = true, facet = true, name = "Adverse Event")
     @Column(name = "PT_TERM")
     public String adverseEvent;
 
-    @Indexable(facet = true, name = "Prim SOC")
+    @Indexable(suggest = true, facet = true, name = "Prim SOC")
     @Column(name = "PRIM_SOC")
     public String primSoc;
 

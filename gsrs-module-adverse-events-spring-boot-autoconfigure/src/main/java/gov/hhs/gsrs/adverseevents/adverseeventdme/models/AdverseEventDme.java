@@ -53,15 +53,15 @@ public class AdverseEventDme extends AbstractGsrsEntity implements SubstanceAdve
     @Column(name="SUBSTANCE_KEY")
     public String substanceKey;
 
-    @Indexable(facet = true, name = "Ingredient Name")
+    @Indexable(suggest = true, facet = true, name = "Ingredient Name")
     @Column(name="NAME")
     public String name;
 
-    @Indexable(facet = true, name = "DME Reactions")
+    @Indexable(suggest = true, facet = true, name = "DME Reactions")
     @Column(name="DME_REACTIONS")
     public String dmeReactions;
 
-    @Indexable(facet = true, name = "PTTerm Meddra")
+    @Indexable(suggest = true, facet = true, name = "PTTerm Meddra")
     @Column(name="PTTERM_MEDDRA")
     public String ptTermMeddra;
 
