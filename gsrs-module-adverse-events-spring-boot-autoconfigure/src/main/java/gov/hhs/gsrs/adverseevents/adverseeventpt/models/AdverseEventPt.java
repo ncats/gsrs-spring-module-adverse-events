@@ -45,8 +45,11 @@ import java.util.Optional;
 public class AdverseEventPt extends AbstractGsrsEntity implements SubstanceAdverseEvent {
 
     @Id
+    @Column(name = "AE_ID")
+    public String id;
+
     @Column(name = "ID")
-    public Long id;
+    public Long id2;
 
     @Column(name="SUBSTANCE_ID")
     public String substanceId;
@@ -62,9 +65,9 @@ public class AdverseEventPt extends AbstractGsrsEntity implements SubstanceAdver
     @Column(name = "NAME")
     public String name;
 
-    @Indexable(suggest = true, facet = true, name = "Adverse Event")
+    @Indexable(suggest = true, facet = true, name = "PT Term")
     @Column(name = "PT_TERM")
-    public String adverseEvent;
+    public String ptTerm;
 
     @Indexable(suggest = true, facet = true, name = "Prim SOC")
     @Column(name = "PRIM_SOC")
@@ -91,7 +94,7 @@ public class AdverseEventPt extends AbstractGsrsEntity implements SubstanceAdver
     @Column(name = "PRR")
     public Double prr;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

@@ -53,8 +53,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 
 @ExposesResourceFor(AdverseEventCvm.class)
-@GsrsRestApiController(context = AdverseEventCvmEntityService.CONTEXT, idHelper = IdHelpers.NUMBER)
-public class AdverseEventCvmController extends EtagLegacySearchEntityController<AdverseEventCvmController, AdverseEventCvm, Long> {
+@GsrsRestApiController(context = AdverseEventCvmEntityService.CONTEXT, idHelper = IdHelpers.STRING_NO_WHITESPACE)
+public class AdverseEventCvmController extends EtagLegacySearchEntityController<AdverseEventCvmController, AdverseEventCvm, String> {
 
     @Autowired
     private ETagRepository eTagRepository;
@@ -89,7 +89,7 @@ public class AdverseEventCvmController extends EtagLegacySearchEntityController<
 
 
     @Override
-    public GsrsEntityService<AdverseEventCvm, Long> getEntityService() {
+    public GsrsEntityService<AdverseEventCvm, String> getEntityService() {
         return adverseEventEntityService;
     }
 

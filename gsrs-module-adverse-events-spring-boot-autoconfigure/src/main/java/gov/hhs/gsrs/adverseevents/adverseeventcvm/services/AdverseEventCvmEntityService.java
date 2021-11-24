@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AdverseEventCvmEntityService extends AbstractGsrsEntityService<AdverseEventCvm, Long> {
+public class AdverseEventCvmEntityService extends AbstractGsrsEntityService<AdverseEventCvm, String> {
     public static final String  CONTEXT = "adverseeventcvm";
 
     public AdverseEventCvmEntityService() {
@@ -54,8 +54,8 @@ public class AdverseEventCvmEntityService extends AbstractGsrsEntityService<Adve
     }
 
     @Override
-    public Long parseIdFromString(String idAsString) {
-        return Long.parseLong(idAsString);
+    public String parseIdFromString(String idAsString) {
+        return idAsString;
     }
 
     @Override
@@ -80,12 +80,12 @@ public class AdverseEventCvmEntityService extends AbstractGsrsEntityService<Adve
 
     @Override
     @Transactional
-    protected AdverseEventCvm update(AdverseEventCvm product) {
-        return repository.saveAndFlush(product);
+    protected AdverseEventCvm update(AdverseEventCvm adverse) {
+        return repository.saveAndFlush(adverse);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         repository.deleteById(id);
     }
 
@@ -100,7 +100,7 @@ public class AdverseEventCvmEntityService extends AbstractGsrsEntityService<Adve
     }
 
     @Override
-    public Long getIdFrom(AdverseEventCvm entity) {
+    public String getIdFrom(AdverseEventCvm entity) {
         return entity.id;
     }
 
@@ -136,8 +136,8 @@ public class AdverseEventCvmEntityService extends AbstractGsrsEntityService<Adve
     }
 
     @Override
-    protected JsonNode toJson(AdverseEventCvm product) throws IOException {
-        return objectMapper.valueToTree(product);
+    protected JsonNode toJson(AdverseEventCvm adverse) throws IOException {
+        return objectMapper.valueToTree(adverse);
     }
 
     @Override
@@ -146,7 +146,7 @@ public class AdverseEventCvmEntityService extends AbstractGsrsEntityService<Adve
     }
 
     @Override
-    public Optional<AdverseEventCvm> get(Long id) {
+    public Optional<AdverseEventCvm> get(String id) {
         return repository.findById(id);
     }
 
@@ -155,11 +155,11 @@ public class AdverseEventCvmEntityService extends AbstractGsrsEntityService<Adve
         if (someKindOfId == null){
             return Optional.empty();
         }
-        return repository.findById(Long.parseLong(someKindOfId));
+        return repository.findById(someKindOfId);
     }
 
     @Override
-    protected Optional<Long> flexLookupIdOnly(String someKindOfId) {
+    protected Optional<String> flexLookupIdOnly(String someKindOfId) {
         //easiest way to avoid deduping data is to just do a full flex lookup and then return id
         Optional<AdverseEventCvm> found = flexLookup(someKindOfId);
         if(found.isPresent()){

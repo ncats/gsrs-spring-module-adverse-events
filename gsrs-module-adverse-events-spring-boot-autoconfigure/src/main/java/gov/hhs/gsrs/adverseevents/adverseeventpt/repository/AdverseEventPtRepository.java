@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public interface AdverseEventPtRepository extends GsrsRepository<AdverseEventPt, Long> {
+public interface AdverseEventPtRepository extends GsrsRepository<AdverseEventPt, String> {
 
-    Optional<AdverseEventPt> findById(Long id);
+    Optional<AdverseEventPt> findById(String id);
 
     @Query("SELECT a FROM AdverseEventFAERSDashboard a where lower(a.nameTruncateGP) = lower(?1)")
     AdverseEventFAERSDashboard findFaersDashboardRecordByName(String name);

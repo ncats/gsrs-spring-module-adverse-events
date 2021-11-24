@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<AdverseEventDme, Long> {
+public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<AdverseEventDme, String> {
     public static final String  CONTEXT = "adverseeventdme";
 
     public AdverseEventDmeEntityService() {
@@ -60,8 +60,8 @@ public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<Adve
     }
 
     @Override
-    public Long parseIdFromString(String idAsString) {
-        return Long.parseLong(idAsString);
+    public String parseIdFromString(String idAsString) {
+        return idAsString;
     }
 
     @Override
@@ -91,7 +91,7 @@ public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<Adve
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         repository.deleteById(id);
     }
 
@@ -106,7 +106,7 @@ public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<Adve
     }
 
     @Override
-    public Long getIdFrom(AdverseEventDme entity) {
+    public String getIdFrom(AdverseEventDme entity) {
         return entity.id;
     }
 
@@ -152,7 +152,7 @@ public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<Adve
     }
 
     @Override
-    public Optional<AdverseEventDme> get(Long id) {
+    public Optional<AdverseEventDme> get(String id) {
         return repository.findById(id);
     }
 
@@ -161,11 +161,11 @@ public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<Adve
         if (someKindOfId == null){
             return Optional.empty();
         }
-        return repository.findById(Long.parseLong(someKindOfId));
+        return repository.findById(someKindOfId);
     }
 
     @Override
-    protected Optional<Long> flexLookupIdOnly(String someKindOfId) {
+    protected Optional<String> flexLookupIdOnly(String someKindOfId) {
         //easiest way to avoid deduping data is to just do a full flex lookup and then return id
         Optional<AdverseEventDme> found = flexLookup(someKindOfId);
         if(found.isPresent()){

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public interface AdverseEventDmeRepository extends GsrsRepository<AdverseEventDme, Long> {
+public interface AdverseEventDmeRepository extends GsrsRepository<AdverseEventDme, String> {
 
     Optional<AdverseEventDme> findById(String id);
 }

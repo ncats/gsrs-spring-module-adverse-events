@@ -40,8 +40,11 @@ import java.util.ArrayList;
 public class AdverseEventDme extends AbstractGsrsEntity implements SubstanceAdverseEvent {
 
     @Id
-    @Column(name="ID")
-    public Long id;
+    @Column(name = "AE_ID")
+    public String id;
+
+    @Column(name = "ID")
+    public Long id2;
 
     @Column(name="SUBSTANCE_ID")
     public String substanceId;
@@ -83,7 +86,7 @@ public class AdverseEventDme extends AbstractGsrsEntity implements SubstanceAdve
         return "Not Deprecated";
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

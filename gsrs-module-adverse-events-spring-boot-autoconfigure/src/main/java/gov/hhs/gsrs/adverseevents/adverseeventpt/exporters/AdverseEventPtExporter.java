@@ -79,7 +79,7 @@ public class AdverseEventPtExporter implements Exporter<AdverseEventPt> {
         DEFAULT_RECIPE_MAP.put(PtDefaultColumns.SUBSTANCE_NAME, SingleColumnValueRecipe.create(PtDefaultColumns.SUBSTANCE_NAME, (s, cell) -> cell.writeString(s.name)));
         DEFAULT_RECIPE_MAP.put(PtDefaultColumns.APPROVAL_ID, SingleColumnValueRecipe.create(PtDefaultColumns.APPROVAL_ID, (s, cell) -> cell.writeString(s.unii)));
         DEFAULT_RECIPE_MAP.put(PtDefaultColumns.SUBSTANCE_KEY, SingleColumnValueRecipe.create(PtDefaultColumns.SUBSTANCE_KEY, (s, cell) -> cell.writeString(s.substanceKey)));
-        DEFAULT_RECIPE_MAP.put(PtDefaultColumns.PT_TERM, SingleColumnValueRecipe.create(PtDefaultColumns.PT_TERM, (s, cell) -> cell.writeString(s.adverseEvent)));
+        DEFAULT_RECIPE_MAP.put(PtDefaultColumns.PT_TERM, SingleColumnValueRecipe.create(PtDefaultColumns.PT_TERM, (s, cell) -> cell.writeString(s.ptTerm)));
         DEFAULT_RECIPE_MAP.put(PtDefaultColumns.PRIM_SOC, SingleColumnValueRecipe.create(PtDefaultColumns.PRIM_SOC, (s, cell) -> cell.writeString(s.primSoc)));
         DEFAULT_RECIPE_MAP.put(PtDefaultColumns.CASE_COUNT, SingleColumnValueRecipe.create(PtDefaultColumns.CASE_COUNT, (s, cell) -> {
             String count = (s.caseCount != null) ? Integer.toString(s.caseCount) : null;
