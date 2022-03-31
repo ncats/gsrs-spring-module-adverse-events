@@ -80,6 +80,7 @@ public class AdverseEventPt extends AbstractGsrsEntity implements SubstanceAdver
     @Column(name = "SOC_COUNT")
     public Integer socCount;
 
+    @Indexable(sortable = true)
     @Column(name = "PT_COUNT")
     public Integer ptCount;
 
