@@ -65,14 +65,15 @@ public class AdverseEventPt extends AbstractGsrsEntity implements SubstanceAdver
     @Column(name = "NAME")
     public String name;
 
-    @Indexable(suggest = true, facet = true, name = "PT Term")
+    @Indexable(suggest = true, facet = true, name = "PT Term", sortable = true)
     @Column(name = "PT_TERM")
     public String ptTerm;
 
-    @Indexable(suggest = true, facet = true, name = "Prim SOC")
+    @Indexable(suggest = true, facet = true, name = "Prim SOC", sortable = true)
     @Column(name = "PRIM_SOC")
     public String primSoc;
 
+    @Indexable(sortable = true)
     @Column(name = "CASE_COUNT")
     public Integer caseCount;
 
@@ -91,6 +92,7 @@ public class AdverseEventPt extends AbstractGsrsEntity implements SubstanceAdver
     @Column(name = "PT_COUNT_TOTAL_VS_THIS_DRUG")
     public Integer ptCountTotalVsDrug;
 
+    @Indexable(sortable = true)
     @Column(name = "PRR")
     public Double prr;
 
