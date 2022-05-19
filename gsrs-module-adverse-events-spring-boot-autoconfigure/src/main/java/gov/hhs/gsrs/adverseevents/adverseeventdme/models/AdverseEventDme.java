@@ -56,27 +56,31 @@ public class AdverseEventDme extends AbstractGsrsEntity implements SubstanceAdve
     @Column(name="SUBSTANCE_KEY")
     public String substanceKey;
 
-    @Indexable(suggest = true, facet = true, name = "Ingredient Name")
+    @Indexable(suggest = true, facet = true, name = "Ingredient Name", sortable = true)
     @Column(name="NAME")
     public String name;
 
-    @Indexable(suggest = true, facet = true, name = "DME Reactions")
+    @Indexable(suggest = true, facet = true, name = "DME Reactions", sortable = true)
     @Column(name="DME_REACTIONS")
     public String dmeReactions;
 
-    @Indexable(suggest = true, facet = true, name = "PTTerm Meddra")
+    @Indexable(suggest = true, facet = true, name = "PTTerm Meddra", sortable = true)
     @Column(name="PTTERM_MEDDRA")
     public String ptTermMeddra;
 
+    @Indexable(name = "DME Case Count", sortable = true)
     @Column(name="CASE_COUNT")
     public Integer caseCount;
 
+    @Indexable(name = "DME Count", sortable = true)
     @Column(name="DME_COUNT")
     public Integer dmeCount;
 
+    @Indexable(name = "DME Count Percent", sortable = true)
     @Column(name="DME_COUNT_PERCENT")
     public Double dmeCountPercent;
 
+    @Indexable(name = "Weighted Avg PRR", sortable = true)
     @Column(name="WEIGHTED_AVG_PRR", columnDefinition="Decimal(10,3) default 0.0")
     public Double weightedAvgPrr = 0.0;
 
