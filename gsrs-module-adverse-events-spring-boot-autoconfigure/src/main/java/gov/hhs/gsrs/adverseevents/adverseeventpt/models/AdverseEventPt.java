@@ -93,7 +93,7 @@ public class AdverseEventPt extends AbstractGsrsEntity implements SubstanceAdver
     @Column(name = "PT_COUNT_TOTAL_VS_THIS_DRUG")
     public Integer ptCountTotalVsDrug;
 
-    @Indexable(sortable = true)
+    @Indexable(facet = true, name = "PRR", sortable = true)
     @Column(name = "PRR")
     public Double prr;
 
