@@ -37,7 +37,7 @@ public class AdverseEventDmeExporterFactory implements ExporterFactory {
 	public AdverseEventDmeExporter createNewExporter(OutputStream out, Parameters params) throws IOException {
 
 		SpreadsheetFormat format = SpreadsheetFormat.XLSX;
-		Spreadsheet spreadsheet = format.createSpeadsheet(out);
+		Spreadsheet spreadsheet = format.createSpreadsheet(out);
 
 		AdverseEventDmeExporter.Builder builder = new AdverseEventDmeExporter.Builder(spreadsheet);
 		configure(builder, params);
