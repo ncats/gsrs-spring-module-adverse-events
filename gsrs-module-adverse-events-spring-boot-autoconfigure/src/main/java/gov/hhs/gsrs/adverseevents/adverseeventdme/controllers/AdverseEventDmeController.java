@@ -1,5 +1,6 @@
 package gov.hhs.gsrs.adverseevents.adverseeventdme.controllers;
 
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import gov.hhs.gsrs.adverseevents.adverseeventdme.models.*;
 import gov.hhs.gsrs.adverseevents.adverseeventdme.services.*;
 import gov.hhs.gsrs.adverseevents.adverseeventdme.searcher.*;
@@ -177,7 +178,7 @@ public class AdverseEventDmeController extends EtagLegacySearchEntityController<
     }
 
     private Exporter<AdverseEventDme> getExporterFor(String extension, OutputStream pos, boolean publicOnly, Map<String, String> parameters) throws IOException {
-        ExporterFactory.Parameters params = this.createParamters(extension, publicOnly, parameters);
+        ExporterFactory.Parameters params = this.createParameters(extension, publicOnly, parameters, JsonNodeFactory.instance.objectNode());
         ExporterFactory<AdverseEventDme> factory = this.gsrsExportConfiguration.getExporterFor(this.getEntityService().getContext(), params);
         if (factory == null) {
             throw new IllegalArgumentException("could not find suitable factory for " + params);
