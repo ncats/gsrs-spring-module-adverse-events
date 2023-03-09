@@ -105,6 +105,7 @@ public class AdverseEventDmeController extends EtagLegacySearchEntityController<
         return stream;
     }
 
+    /*
     @PreAuthorize("isAuthenticated()")
     @GetGsrsRestApiMapping("/export/{etagId}/{format}")
     public ResponseEntity<Object> createExport(@PathVariable("etagId") String etagId,
@@ -116,34 +117,6 @@ public class AdverseEventDmeController extends EtagLegacySearchEntityController<
                                                HttpServletRequest request
 
     ) throws Exception {
-        /*
-        Optional<ETag> etagObj = this.eTagRepository.findByEtag(etagId);
-        boolean publicOnly = publicOnlyObj == null ? true : publicOnlyObj;
-        if (!etagObj.isPresent()) {
-            return new ResponseEntity("could not find etag with Id " + etagId, this.gsrsControllerConfiguration.getHttpStatusFor(HttpStatus.BAD_REQUEST, parameters));
-        } else {
-            ExportMetaData emd = new ExportMetaData(etagId, ((ETag) etagObj.get()).uri, "admin", publicOnly, format);
-            Stream<AdverseEventDme> mstream = new EtagExportGenerator<AdverseEventDme>(entityManager, transactionManager, HttpRequestHolder.fromRequest(request)).generateExportFrom(getEntityService().getContext(), etagObj.get()).get();
-
-            Stream<AdverseEventDme> effectivelyFinalStream = this.filterStream(mstream, publicOnly, parameters);
-
-            if (fileName != null) {
-                emd.setDisplayFilename(fileName);
-            }
-
-            ExportProcess<AdverseEventDme> p = this.exportService.createExport(emd, () -> {
-                return effectivelyFinalStream;
-            });
-            p.run(this.taskExecutor, (out) -> {
-                return (Exporter) Unchecked.uncheck(() -> {
-
-                    return this.getExporterFor(format, out, publicOnly, parameters);
-                });
-            });
-            return new ResponseEntity(p.getMetaData(), HttpStatus.OK);
-        }
-     }
-         */
 
         Optional<ETag> etagObj = eTagRepository.findByEtag(etagId);
 
@@ -186,6 +159,7 @@ public class AdverseEventDmeController extends EtagLegacySearchEntityController<
             return factory.createNewExporter(pos, params);
         }
     }
+    */
 
     public Optional<AdverseEventDme> injectSubstanceDetails(Optional<AdverseEventDme> application) {
 

@@ -104,6 +104,7 @@ public class AdverseEventCvmController extends EtagLegacySearchEntityController<
         return stream;
     }
 
+    /*
     @PreAuthorize("isAuthenticated()")
     @GetGsrsRestApiMapping("/export/{etagId}/{format}")
     public ResponseEntity<Object> createExport(@PathVariable("etagId") String etagId,
@@ -115,35 +116,6 @@ public class AdverseEventCvmController extends EtagLegacySearchEntityController<
                                                HttpServletRequest request
 
     ) throws Exception {
-        /*
-        Optional<ETag> etagObj = this.eTagRepository.findByEtag(etagId);
-        boolean publicOnly = publicOnlyObj == null ? true : publicOnlyObj;
-        if (!etagObj.isPresent()) {
-            return new ResponseEntity("could not find etag with Id " + etagId, this.gsrsControllerConfiguration.getHttpStatusFor(HttpStatus.BAD_REQUEST, parameters));
-        } else {
-            ExportMetaData emd = new ExportMetaData(etagId, ((ETag) etagObj.get()).uri, "admin", publicOnly, format);
-            Stream<AdverseEventCvm> mstream = new EtagExportGenerator<AdverseEventCvm>(entityManager, transactionManager, HttpRequestHolder.fromRequest(request)).generateExportFrom(getEntityService().getContext(), etagObj.get()).get();
-
-            Stream<AdverseEventCvm> effectivelyFinalStream = this.filterStream(mstream, publicOnly, parameters);
-
-            if (fileName != null) {
-                emd.setDisplayFilename(fileName);
-                System.out.println("FILE NAME: " + fileName);
-            }
-
-            ExportProcess<AdverseEventCvm> p = this.exportService.createExport(emd, () -> {
-                return effectivelyFinalStream;
-            });
-            p.run(this.taskExecutor, (out) -> {
-                return (Exporter) Unchecked.uncheck(() -> {
-
-                    return this.getExporterFor(format, out, publicOnly, parameters);
-                });
-            });
-            return new ResponseEntity(p.getMetaData(), HttpStatus.OK);
-        }
-    }
-    */
 
         Optional<ETag> etagObj = eTagRepository.findByEtag(etagId);
 
@@ -186,6 +158,7 @@ public class AdverseEventCvmController extends EtagLegacySearchEntityController<
             return factory.createNewExporter(pos, params);
         }
     }
+    */
 
     public Optional<AdverseEventCvm> injectSubstanceDetails(Optional<AdverseEventCvm> application) {
 
