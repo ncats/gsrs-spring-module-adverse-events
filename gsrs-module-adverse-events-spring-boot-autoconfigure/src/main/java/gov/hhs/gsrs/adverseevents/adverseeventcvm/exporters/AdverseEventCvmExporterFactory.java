@@ -37,7 +37,7 @@ public class AdverseEventCvmExporterFactory implements ExporterFactory {
 	public AdverseEventCvmExporter createNewExporter(OutputStream out, Parameters params) throws IOException {
 
 		SpreadsheetFormat format = SpreadsheetFormat.XLSX;
-		Spreadsheet spreadsheet = format.createSpeadsheet(out);
+		Spreadsheet spreadsheet = format.createSpreadsheet(out);
 
 		AdverseEventCvmExporter.Builder builder = new AdverseEventCvmExporter.Builder(spreadsheet);
 		configure(builder, params);
