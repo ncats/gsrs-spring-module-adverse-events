@@ -33,8 +33,8 @@
         <lucene.version>4.10.0</lucene.version>
         <gsrs.version>3.1-SNAPSHOT</gsrs.version>
         <gsrs.adverse-events.version>3.1-SNAPSHOT</gsrs.adverse-events.version>
-        <log4j2.version>2.17.1</log4j2.version>
-        <!-- TO BE REMOVED -->
+        <log4j2.version>2.17.2</log4j2.version>
+        <!-- TO BE REMOVE -->
         <gsrs.substance.version>3.1-SNAPSHOT</gsrs.substance.version>
     </properties>
 
