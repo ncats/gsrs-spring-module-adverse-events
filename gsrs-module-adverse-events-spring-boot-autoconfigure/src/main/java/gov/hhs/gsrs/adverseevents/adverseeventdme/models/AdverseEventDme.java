@@ -40,7 +40,7 @@ import java.util.ArrayList;
 public class AdverseEventDme extends AbstractGsrsEntity implements SubstanceAdverseEvent {
 
     @Id
-    @Column(name = "AE_ID", length=500)
+    @Column(name = "AE_ID")
     public String id;
 
     @Column(name = "ID")
@@ -57,7 +57,7 @@ public class AdverseEventDme extends AbstractGsrsEntity implements SubstanceAdve
     public String substanceKey;
 
     @Indexable(suggest = true, facet = true, name = "Ingredient Name", sortable = true)
-    @Column(name="NAME", length=500)
+    @Column(name="NAME")
     public String name;
 
     @Indexable(suggest = true, facet = true, name = "DME Reactions", sortable = true)

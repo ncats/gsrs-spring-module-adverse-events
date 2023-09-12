@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class AdverseEventCvm extends AbstractGsrsEntity implements SubstanceAdverseEvent {
 
     @Id
-    @Column(name = "AE_ID", length=500)
+    @Column(name = "AE_ID")
     public String id;
 
     @Column(name = "ID")
@@ -56,7 +56,7 @@ public class AdverseEventCvm extends AbstractGsrsEntity implements SubstanceAdve
     public String substanceKey;
 
     @Indexable(suggest = true, facet = true, name = "Ingredient Name", sortable = true)
-    @Column(name="NAME", length=500)
+    @Column(name="NAME")
     public String name;
 
     @Indexable(suggest = true, facet = true, name = "Route of Administration", sortable = true)
@@ -68,7 +68,7 @@ public class AdverseEventCvm extends AbstractGsrsEntity implements SubstanceAdve
     public String species;
 
     @Indexable(suggest = true, facet = true, name = "Adverse Event", sortable = true)
-    @Column(name="ADVERSE_EVENT", length=500)
+    @Column(name="ADVERSE_EVENT")
     public String adverseEvent;
 
     @Indexable(suggest = true, facet = true, name = "CVM Count", sortable = true)
