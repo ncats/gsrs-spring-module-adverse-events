@@ -46,10 +46,10 @@ public class AdverseEventFAERSDashboard extends AbstractGsrsEntity {
     @Column(name="ID")
     public int id;
 
-    @Column(name="NAME")
+    @Column(name="NAME", length=500)
     public String name;
 
-    @Column(name="NAME_TRUNCATE_G_P")
+    @Column(name="NAME_TRUNCATE_G_P", length=500)
     public String nameTruncateGP;
 
     @Column(name="NAME_TYPE")
