@@ -20,7 +20,7 @@
 
     <groupId>gov.nih.ncats</groupId>
     <artifactId>gsrs-module-adverse-events</artifactId>
-    <version>3.1.4-SNAPSHOT</version>
+    <version>3.2-SNAPSHOT</version>
     <name>GSRS Adverse Events Module</name>
     <description>GSRS Adverse Events Module for Spring Boot</description>
 
@@ -31,12 +31,12 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>2021.0.8</spring-cloud.version>
         <lucene.version>4.10.0</lucene.version>
-        <gsrs.version>3.1.4-SNAPSHOT</gsrs.version>
-        <gsrs.adverse-events.version>3.1.4-SNAPSHOT</gsrs.adverse-events.version>
+        <gsrs.version>3.2-SNAPSHOT</gsrs.version>
+        <gsrs.adverse-events.version>3.2-SNAPSHOT</gsrs.adverse-events.version>
         <log4j2.version>2.17.2</log4j2.version>
         <spring-boot.version>2.7.18</spring-boot.version>
         <!-- TO BE REMOVED IN THE FUTURE-->
-        <gsrs.substance.version>3.1.4-SNAPSHOT</gsrs.substance.version>
+        <gsrs.substance.version>3.2-SNAPSHOT</gsrs.substance.version>
     </properties>
 
     <!-- NEW Maven Central Repository BEGIN - July 2025 -->
