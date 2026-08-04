@@ -30,7 +30,7 @@ import gsrs.springUtils.AutowireHelper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;

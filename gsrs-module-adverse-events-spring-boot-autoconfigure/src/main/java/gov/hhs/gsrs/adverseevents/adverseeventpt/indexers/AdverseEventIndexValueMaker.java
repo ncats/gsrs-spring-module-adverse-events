@@ -6,7 +6,7 @@ import gov.hhs.gsrs.adverseevents.adverseeventpt.models.AdverseEventPt;
 import ix.core.search.text.IndexValueMaker;
 import ix.core.search.text.IndexableValue;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 import java.util.function.Consumer;
 
