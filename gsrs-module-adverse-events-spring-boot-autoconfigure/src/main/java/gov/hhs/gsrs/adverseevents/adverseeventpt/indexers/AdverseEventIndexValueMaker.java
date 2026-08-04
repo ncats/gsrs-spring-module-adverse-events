@@ -30,7 +30,7 @@ public class AdverseEventIndexValueMaker implements IndexValueMaker<AdverseEvent
                 if (adverseEvent.caseCount > 0) {
                     consumer.accept(IndexableValue.simpleFacetLongValue("Case Count", adverseEvent.caseCount, caseCountBuckets));
                 }
-                if (adverseEvent.prr > -2) {
+                if ((adverseEvent.prr != null) && (adverseEvent.prr > -2)) {
                     consumer.accept(IndexableValue.simpleFacetDoubleValue("PRR", adverseEvent.prr, prrCountBuckets));
                 }
                 if (adverseEvent.name != null) {
