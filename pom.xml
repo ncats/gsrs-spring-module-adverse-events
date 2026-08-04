@@ -30,7 +30,6 @@
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
-        <lucene.version>4.10.0</lucene.version>
         <gsrs.version>3.2.5-SNAPSHOT</gsrs.version>
         <gsrs.adverse-events.version>3.2.5-SNAPSHOT</gsrs.adverse-events.version>
         <log4j2.version>2.21.1</log4j2.version>
