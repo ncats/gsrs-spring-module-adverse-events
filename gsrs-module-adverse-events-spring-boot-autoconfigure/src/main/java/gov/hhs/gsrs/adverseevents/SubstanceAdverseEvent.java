@@ -7,7 +7,7 @@ import gsrs.springUtils.AutowireHelper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.util.Objects;
 
 public interface SubstanceAdverseEvent {

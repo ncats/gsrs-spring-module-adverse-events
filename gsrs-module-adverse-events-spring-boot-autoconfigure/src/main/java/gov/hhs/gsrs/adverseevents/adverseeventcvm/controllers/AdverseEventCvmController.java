@@ -49,9 +49,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.persistence.PersistenceContext;
-import javax.persistence.EntityManager;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.EntityManager;
 
 @ExposesResourceFor(AdverseEventCvm.class)
 @GsrsRestApiController(context = AdverseEventCvmEntityService.CONTEXT, idHelper = IdHelpers.STRING_NO_WHITESPACE)
