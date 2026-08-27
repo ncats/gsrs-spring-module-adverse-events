@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>gsrs-module-adverse-events-spring-boot-autoconfigure</artifactId>
+    <name>gsrs-module-adverse-events-spring-boot-autoconfigure</name>
 
     <dependencies>
         <!-- NCATS Common and STARTER Dependencies -->
@@ -68,13 +69,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
-        <!-- SPRINGFOX BOOT Dependencies -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
         </dependency>
 
         <!-- LOMBOK Dependencies -->
