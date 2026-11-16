@@ -6,9 +6,6 @@ import gov.hhs.gsrs.adverseevents.adverseeventdme.respository.*;
 import gsrs.controller.IdHelpers;
 import gsrs.events.AbstractEntityCreatedEvent;
 import gsrs.events.AbstractEntityUpdatedEvent;
-// import gsrs.module.substance.events.SubstanceCreatedEvent;
-// import gsrs.module.substance.events.SubstanceUpdatedEvent;
-// import gsrs.module.substance.repository.SubstanceRepository;
 import gsrs.module.substance.SubstanceEntityService;
 import gsrs.repository.GroupRepository;
 import gsrs.service.AbstractGsrsEntityService;
@@ -17,11 +14,9 @@ import ix.core.validator.GinasProcessingMessage;
 import ix.core.validator.ValidationResponse;
 import ix.core.validator.ValidationResponseBuilder;
 import ix.core.validator.ValidatorCallback;
-// import ix.ginas.models.v1.Substance;
-// import ix.ginas.utils.GinasProcessingStrategy;
-// import ix.ginas.utils.JsonSubstanceFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.domain.Page;
@@ -29,8 +24,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityManager;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+// jackson databind
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 
 import ix.utils.Util;
 import java.io.IOException;
@@ -49,7 +46,8 @@ public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<Adve
     private AdverseEventDmeRepository repository;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    @Qualifier("legacyJsonMapper")
+    private JsonMapper mapper;
 
     @Autowired
     private GroupRepository groupRepository;
@@ -66,7 +64,7 @@ public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<Adve
 
     @Override
     protected AdverseEventDme fromNewJson(JsonNode json) throws IOException {
-        return objectMapper.convertValue(json, AdverseEventDme.class);
+        return mapper.convertValue(json, AdverseEventDme.class);
     }
 
     @Override
@@ -115,35 +113,20 @@ public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<Adve
         return null;
     }
 
-    /*
-    @Override
-    protected Application fixUpdatedIfNeeded(Application oldEntity, Application updatedEntity) {
-        //force the "owner" on all the updated fields to point to the old version so the uuids are correct
-        return updatedEntity;
-    }
-    */
-
     @Override
     protected AdverseEventDme fromUpdatedJson(JsonNode json) throws IOException {
         //TODO should we make any edits to remove fields?
-        return objectMapper.convertValue(json, AdverseEventDme.class);
+        return mapper.convertValue(json, AdverseEventDme.class);
     }
 
     @Override
     protected List<AdverseEventDme> fromUpdatedJsonList(JsonNode list) throws IOException {
         return null;
-        /*
-        List<Application> substances = new ArrayList<>(list.size());
-        for(JsonNode n : list){
-            substances.add(fromUpdatedJson(n));
-        }
-        return substances;
-         */
     }
 
     @Override
     protected JsonNode toJson(AdverseEventDme product) throws IOException {
-        return objectMapper.valueToTree(product);
+        return mapper.valueToTree(product);
     }
 
     @Override
