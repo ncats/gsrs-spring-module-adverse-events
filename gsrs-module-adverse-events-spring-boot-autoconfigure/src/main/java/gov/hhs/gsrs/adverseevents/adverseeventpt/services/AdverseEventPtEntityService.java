@@ -16,6 +16,7 @@ import ix.core.validator.ValidationResponseBuilder;
 import ix.core.validator.ValidatorCallback;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.domain.Page;
@@ -23,8 +24,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityManager;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.JsonNode;
+//import com.fasterxml.jackson.databind.ObjectMapper;
+
+// jackson databind
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 
 import ix.utils.Util;
 import java.io.IOException;
@@ -42,8 +47,11 @@ public class AdverseEventPtEntityService extends AbstractGsrsEntityService<Adver
     @Autowired
     private AdverseEventPtRepository repository;
 
+    //@Autowired
+    //private ObjectMapper objectMapper;
     @Autowired
-    private ObjectMapper objectMapper;
+    @Qualifier("legacyJsonMapper")
+    private JsonMapper mapper;
 
     @Autowired
     private GroupRepository groupRepository;
@@ -60,7 +68,7 @@ public class AdverseEventPtEntityService extends AbstractGsrsEntityService<Adver
 
     @Override
     protected AdverseEventPt fromNewJson(JsonNode json) throws IOException {
-        return objectMapper.convertValue(json, AdverseEventPt.class);
+        return mapper.convertValue(json, AdverseEventPt.class);
     }
 
     @Override
@@ -120,7 +128,7 @@ public class AdverseEventPtEntityService extends AbstractGsrsEntityService<Adver
     @Override
     protected AdverseEventPt fromUpdatedJson(JsonNode json) throws IOException {
         //TODO should we make any edits to remove fields?
-        return objectMapper.convertValue(json, AdverseEventPt.class);
+        return mapper.convertValue(json, AdverseEventPt.class);
     }
 
     @Override
@@ -137,7 +145,7 @@ public class AdverseEventPtEntityService extends AbstractGsrsEntityService<Adver
 
     @Override
     protected JsonNode toJson(AdverseEventPt adverse) throws IOException {
-        return objectMapper.valueToTree(adverse);
+        return mapper.valueToTree(adverse);
     }
 
     @Override

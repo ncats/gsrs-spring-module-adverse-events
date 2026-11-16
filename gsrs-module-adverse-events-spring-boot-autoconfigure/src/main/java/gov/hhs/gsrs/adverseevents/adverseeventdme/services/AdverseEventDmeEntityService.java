@@ -22,6 +22,7 @@ import ix.core.validator.ValidatorCallback;
 // import ix.ginas.utils.JsonSubstanceFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.domain.Page;
@@ -29,8 +30,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityManager;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.JsonNode;
+//import com.fasterxml.jackson.databind.ObjectMapper;
+
+// jackson databind
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 
 import ix.utils.Util;
 import java.io.IOException;
@@ -48,8 +53,11 @@ public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<Adve
     @Autowired
     private AdverseEventDmeRepository repository;
 
+    //@Autowired
+    //private ObjectMapper objectMapper;
     @Autowired
-    private ObjectMapper objectMapper;
+    @Qualifier("legacyJsonMapper")
+    private JsonMapper mapper;
 
     @Autowired
     private GroupRepository groupRepository;
@@ -66,7 +74,7 @@ public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<Adve
 
     @Override
     protected AdverseEventDme fromNewJson(JsonNode json) throws IOException {
-        return objectMapper.convertValue(json, AdverseEventDme.class);
+        return mapper.convertValue(json, AdverseEventDme.class);
     }
 
     @Override
@@ -126,7 +134,7 @@ public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<Adve
     @Override
     protected AdverseEventDme fromUpdatedJson(JsonNode json) throws IOException {
         //TODO should we make any edits to remove fields?
-        return objectMapper.convertValue(json, AdverseEventDme.class);
+        return mapper.convertValue(json, AdverseEventDme.class);
     }
 
     @Override
@@ -143,7 +151,7 @@ public class AdverseEventDmeEntityService extends AbstractGsrsEntityService<Adve
 
     @Override
     protected JsonNode toJson(AdverseEventDme product) throws IOException {
-        return objectMapper.valueToTree(product);
+        return mapper.valueToTree(product);
     }
 
     @Override
