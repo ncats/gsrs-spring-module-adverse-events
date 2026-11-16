@@ -24,8 +24,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityManager;
-//import com.fasterxml.jackson.databind.JsonNode;
-//import com.fasterxml.jackson.databind.ObjectMapper;
 
 // jackson databind
 import tools.jackson.databind.JsonNode;
@@ -47,8 +45,6 @@ public class AdverseEventPtEntityService extends AbstractGsrsEntityService<Adver
     @Autowired
     private AdverseEventPtRepository repository;
 
-    //@Autowired
-    //private ObjectMapper objectMapper;
     @Autowired
     @Qualifier("legacyJsonMapper")
     private JsonMapper mapper;
@@ -117,14 +113,6 @@ public class AdverseEventPtEntityService extends AbstractGsrsEntityService<Adver
         return null;
     }
 
-    /*
-    @Override
-    protected Application fixUpdatedIfNeeded(Application oldEntity, Application updatedEntity) {
-        //force the "owner" on all the updated fields to point to the old version so the uuids are correct
-        return updatedEntity;
-    }
-    */
-
     @Override
     protected AdverseEventPt fromUpdatedJson(JsonNode json) throws IOException {
         //TODO should we make any edits to remove fields?
@@ -134,13 +122,6 @@ public class AdverseEventPtEntityService extends AbstractGsrsEntityService<Adver
     @Override
     protected List<AdverseEventPt> fromUpdatedJsonList(JsonNode list) throws IOException {
         return null;
-        /*
-        List<Application> substances = new ArrayList<>(list.size());
-        for(JsonNode n : list){
-            substances.add(fromUpdatedJson(n));
-        }
-        return substances;
-         */
     }
 
     @Override
